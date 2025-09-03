@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Page Life Cycle Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #status-display {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding the HTML Page Life Cycle</h1>
+    <p>The current document ready state is: <span id="status-display"></span></p>
+
+    <script>
+        const statusDisplay = document.getElementById('status-display');
+
+        function updateReadyState() {
+            statusDisplay.textContent = document.readyState;
+            console.log(`Document readyState: ${document.readyState}`);
+
+            if (document.readyState === 'complete') {
+                console.log('Document and all resources are fully loaded.');
+            }
+        }
+
+        // Initial check
+        updateReadyState();
+
+        // Listen for changes in the document's ready state
+        document.addEventListener('readystatechange', updateReadyState);
+
+        // Example of a 'load' event listener on the window,
+        // which fires after all resources (images, scripts, etc.) are loaded.
+        window.addEventListener('load', () => {
+            console.log('Window load event fired: All resources are loaded.');
+        });
+    </script>
+</body>
+</html>
